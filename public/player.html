@@ -82,7 +82,7 @@
     </div>
 
     <script>
-
+        import API_BASE_URL from "./config.js";
         function getPlayerData() {
             const urlParams = new URLSearchParams(window.location.search);
             const playerName = urlParams.get("name");
@@ -94,7 +94,7 @@
 
             document.getElementById("playerName").textContent = playerName;
 
-            fetch(`http://localhost:8080/player/${encodeURIComponent(playerName)}`)
+            fetch(`${API_BASE_URL}/player/${encodeURIComponent(playerName)}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.message) {
