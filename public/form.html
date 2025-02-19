@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="module" src="config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Quagmire&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -138,10 +139,11 @@
     </form>
 
     <script>
-        
+        import API_BASE_URL from "./config.js";
         function loadPlayers() {
-            fetch("https://testingsqlite.onrender.com/players") // ✅ Fetch player names from backend
+            fetch(`${API_BASE_URL}/players`)
                 .then(response => response.json())
+                .catch(error => console.error("Error loading players:", error)); // ✅ Fetch player names from backend
                 .then(players => {
                     const playerSelect = document.getElementById("player_name");
                     playerSelect.innerHTML = '<option value="">Select Existing Player</option>'; // Reset options
@@ -281,7 +283,7 @@
                 fielding_homework: Array.from(document.querySelectorAll("#fielding_drills input:checked")).map(el => el.value).join(", ")
             };
 
-            fetch("https://testingsqlite.onrender.com/submit", {
+            fetch(`${API_BASE_URL}/submit`, {  // Dynamically use API URL
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
@@ -294,6 +296,10 @@
                     alert("Error: " + data.message);
                 }
             })
+.catch(error => {
+    console.error("❌ Error submitting form:", error);
+    alert("Error submitting form. Please try again.");
+});
             .catch(error => {
                 alert("Error submitting form!");
                 console.error("Form Submission Error:", error);
