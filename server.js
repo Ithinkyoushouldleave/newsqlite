@@ -5,7 +5,6 @@ const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
 const bodyParser = require("body-parser");
 const cors = require("cors");
-import API_BASE_URL from "./config.js";
 const app = express();
 const PORT = 8080; // ✅ Ensure this matches your frontend port
 
