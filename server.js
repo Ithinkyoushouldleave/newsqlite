@@ -13,7 +13,10 @@ const PORT = 8080; // ✅ Ensure this matches your frontend port
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(express.static(path.join(__dirname, "public")));
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "home.html"));
+});
 // ✅ Connect to SQLite Database
 const db = new sqlite3.Database("form_data.db", (err) => {
     if (err) {
