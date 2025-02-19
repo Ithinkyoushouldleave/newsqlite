@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="module">
+    import API_BASE_URL from "./config.js";
+    window.API_BASE_URL = API_BASE_URL; // Make API_BASE_URL globally accessible
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Player Details</title>
@@ -81,8 +85,7 @@
         </table>
     </div>
 
-    <script type="module">
-        import API_BASE_URL from "./config.js";
+    <script>
         function getPlayerData() {
             const urlParams = new URLSearchParams(window.location.search);
             const playerName = urlParams.get("name");
