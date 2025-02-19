@@ -138,8 +138,9 @@
     </form>
 
     <script>
+        
         function loadPlayers() {
-            fetch("http://localhost:8080/players") // ✅ Fetch player names from backend
+            fetch("https://testingsqlite.onrender.com/players") // ✅ Fetch player names from backend
                 .then(response => response.json())
                 .then(players => {
                     const playerSelect = document.getElementById("player_name");
@@ -280,7 +281,7 @@
                 fielding_homework: Array.from(document.querySelectorAll("#fielding_drills input:checked")).map(el => el.value).join(", ")
             };
 
-            fetch("http://localhost:8080/submit", {
+            fetch("https://testingsqlite.onrender.com/submit", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
